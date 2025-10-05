@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <!-- ======================================================================
+       Main Character OU — Agentuur kunstnikele, sportlastele ja meelelahutajatele
+       Versioon: täislehena (≥350 rida), modaalne kontaktivorm, 2025 kuupäevad
+       Disainiviide: teatri-/festivali koduleht, must/valge kontrast + liugur
+       Aadress: Soosaare tn 3, 61508 Elva
+       E-post: meelis@maincharacterest.org
+       NB! Pole telefone ega vihjeid tasudele — kontakt on e-posti teel
+     ====================================================================== -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Main Character OU — Agentuur lavakunstnikele ja avaliku esinemise projektidele</title>
+  <meta name="description" content="Main Character OU esindab artiste, sportlasi ja meelelahutajaid. Programmid, tuurid ja lavastused: loome partnerlusi, korraldame kavasid, haldame kommunikatsiooni. Aadress: Soosaare tn 3, 61508 Elva. Kontakt: meelis@maincharacterest.org.">
+  <meta name="color-scheme" content="light dark">
+  <style>
+    /* ===================== Palett / mõõdud ===================== */
+    :root{
+      --bg: #101113;             /* tume taust tumedale plokile */
+      --ink: #111113;            /* tume tekst heledal */
+      --paper: #ffffff;          /* valge pind */
+      --mild: #f4f4f6;           /* pehme hele taust */
+      --muted: #6c6f75;          /* summutatud tekst */
+      --accent: #6d53ff;         /* lilla aktsent pealkirja viitena */
+      --accent-2: #0ea5e9;       /* sinine aktsent (valikuline) */
+      --stroke: rgba(17,17,19,.1);/* õrn piirjoon */
+      --shadow: 0 30px 60px rgba(0,0,0,.25);
+      --radius-xl: 28px;         /* suured ümardused sektsioonidele */
+      --radius: 14px;            /* tavaline ümardus */
+      --grid: 1200px;            /* sisu max laius */
+    }
+
+    /* ===================== Reset & põhitüpograafia ===================== */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: var(--ink); background:#fff; line-height:1.6;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+    a{color:inherit; text-decoration:none}
+    a:hover{text-decoration:underline}
+    img{max-width:100%; display:block}
+    .container{max-width:var(--grid); margin:0 auto; padding:0 20px}
+    .section{padding:60px 0}
+    .small{font-size:12px; color:#8a8f96}
+
+    /* ===================== Päis / nav ===================== */
+    header{
+      position: sticky; top:0; z-index:50; background: rgba(255,255,255,.85);
+      backdrop-filter: saturate(120%) blur(8px); border-bottom:1px solid var(--stroke);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:18px; padding:12px 0}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:900; letter-spacing:.2px}
+    .brand-mark{
+      width:36px; height:36px; border-radius:11px; background: linear-gradient(135deg, #111, #444);
+      color:#fff; display:grid; place-items:center; box-shadow: var(--shadow)
+    }
+    nav ul{list-style:none; margin:0; padding:0; display:flex; gap:16px; align-items:center}
+    nav a{display:inline-block; padding:8px 12px; border-radius:10px; font-weight:700; color:#23262b}
+    nav a:hover{background:#f1f2f4}
+    /* mini-CTA heas kooskõlas */
+    .btn-chip{
+      border:1px solid var(--stroke);
+      background:#fff;
+      border-radius:999px;
+      padding:8px 14px;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .btn-chip:hover{ background:#f1f2f4; }
+
+    /* ===================== Hero / Liugur ===================== */
+    .hero{
+      position:relative; overflow:hidden; background:#000; color:#fff; height:500px;
+      border-bottom: 1px solid var(--stroke);
+    }
+    .hero .slide{
+      position:absolute; inset:0; display:none; background-size:cover; background-position:center;
+    }
+    .hero .slide.active{display:block; animation: fadein .6s ease}
+    @keyframes fadein{from{opacity:.4} to{opacity:1}}
+
+    .hero-overlay{
+      position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.6) 65%);
+    }
+    .hero-content{
+      position:absolute; left:0; right:0; bottom:28px; z-index:2; color:#fff;
+    }
+    .hero-inner{max-width:var(--grid); margin:0 auto; padding:0 20px}
+    .eyebrow{font-size:12px; letter-spacing:.18em; text-transform:uppercase; opacity:.9}
+    .hero h1{font-size:44px; margin:8px 0 10px; letter-spacing:-.01em}
+    .hero .meta{display:flex; gap:16px; flex-wrap:wrap; align-items:center}
+    .hero .meta .tag{padding:6px 10px; border:1px solid rgba(255,255,255,.35); border-radius:10px; font-size:13px}
+    .hero .actions{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; gap:10px; border-radius:999px; padding:10px 16px;
+      border:0; font-weight:800; cursor:pointer; text-decoration:none;
+    }
+    .btn.primary{background:#fff; color:#111}
+    .btn.ghost{background:transparent; color:#fff; border:1px solid rgba(255,255,255,.35)}
+    .bullets{
+      position:absolute; left:50%; transform:translateX(-50%); bottom:12px; display:flex; gap:8px; z-index:3
+    }
+    .bullet{width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,.35); cursor:pointer}
+    .bullet.active{background:#fff}
+
+    /* ===================== PROGRAMM — “Hetkel laval / Peagi” ===================== */
+    .stage{padding:50px 0; background:#fff}
+    .tabs{display:flex; gap:18px; border-bottom:1px solid var(--stroke); margin-bottom:18px}
+    .tab{
+      padding:10px 6px; font-weight:900; border-bottom:3px solid transparent; cursor:pointer;
+      color:#3b3f45
+    }
+    .tab.active{border-color: var(--accent); color:#111}
+
+    .cards{display:grid; grid-template-columns:1fr 1fr; gap:22px}
+    .card{
+      background: var(--paper); border:1px solid var(--stroke); border-radius: var(--radius);
+      overflow:hidden; box-shadow: 0 10px 20px rgba(0,0,0,.04);
+    }
+    .card-media{height:220px; background:#ddd; background-size:cover; background-position:center}
+    .card-body{padding:14px 16px}
+    .card h3{margin:4px 0 6px; font-size:20px}
+    .caption{color: var(--muted); font-size:14px}
+
+    /* ===================== Lai bänner mustvalge foto ===================== */
+    .stripe{
+      height:240px; background: url('https://images.unsplash.com/photo-1529636439537-73eb7d7f3a56?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+      display:grid; place-items:center; color:#fff; position:relative
+    }
+    .stripe::after{
+      content:""; position:absolute; inset:0; background: rgba(0,0,0,.45);
+    }
+    .stripe h2{position:relative; z-index:1; font-size:30px; letter-spacing:.02em}
+
+    /* ===================== Uudised (tabelilaadne loetelu) ===================== */
+    .news{background:#fff; padding:60px 0}
+    .news-head{display:flex; align-items:center; justify-content:space-between; gap:16px}
+    .news h2{margin:0; font-size:32px}
+    .news .more{border:1px solid var(--stroke); border-radius:999px; padding:10px 14px; font-weight:800; background:#fff}
+    .news-list{display:grid; grid-template-columns: 1fr 380px; gap:24px; margin-top:18px}
+    .news-item{
+      border-top:1px solid var(--stroke); padding:12px 0; display:grid; grid-template-columns:160px 1fr; gap:14px; align-items:center
+    }
+    .news-item time{font-size:12px; color:#8a8f96; font-weight:800; letter-spacing:.06em}
+    .news-item a{font-weight:700}
+    .news-media img{width:100%; height:84px; object-fit:cover; border-radius:10px}
+
+    /* ===================== Pakkumised — tume plokk ===================== */
+    .offers{
+      background: var(--bg); color:#fff; padding:70px 0; position:relative; overflow:hidden
+    }
+    .offers .container{position:relative; z-index:1}
+    .offers h2{font-size:34px; margin:0 0 8px}
+    .offer-grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:24px; margin-top:22px}
+    .offer-card{
+      background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius); padding:18px
+    }
+    .offer-card h3{margin:6px 0 6px}
+    .offer-card p{color: #d1d5db}
+
+    /* ===================== Kontakt + jalus ===================== */
+    .contact{
+      background:#f7f7f8; padding:60px 0
+    }
+    .contact h2{margin-top:0}
+    .contact-grid{display:grid; grid-template-columns: 1fr 1fr; gap:22px}
+    .info-card{
+      background:#fff; border:1px solid var(--stroke); border-radius: var(--radius); padding:18px
+    }
+    footer{
+      padding:32px 0 60px; background:#fff; color:#6b7076; border-top:1px solid var(--stroke)
+    }
+    .footer-row{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px}
+    .badge{display:inline-block; padding:6px 10px; border-radius:10px; background:#f1f2f4; border:1px solid var(--stroke); font-size:12px}
+
+    /* ===================== MODAALNE KONTAKTIVORM ===================== */
+    .modal{
+      position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:60;
+      background:rgba(0,0,0,.35); backdrop-filter:blur(2px);
+    }
+    .modal.show{ display:flex; }
+    .modal-card{
+      width:min(720px,92vw); background:#fff; border-radius:20px;
+      border:1px solid var(--stroke); box-shadow:var(--shadow); overflow:hidden;
+    }
+    .modal-head{
+      padding:16px 18px; background:#f6f7f8; border-bottom:1px solid var(--stroke);
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .modal-head h4{ margin:0; font-size:18px }
+    .close{ border:0; background:#111; color:#fff; border-radius:10px; padding:6px 10px; cursor:pointer; font-weight:800 }
+    .modal-body{ padding:18px }
+
+    /* Vorm (ühtlane kogu lehel) */
+    form{ display:grid; gap:12px }
+    label{ font-weight:700; font-size:14px }
+    input, textarea, select{
+      width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--stroke); outline:none; background:#fff;
+    }
+    input:focus, textarea:focus, select:focus{ border-color:#111 }
+    .row{ display:grid; grid-template-columns:1fr 1fr; gap:12px }
+    @media (max-width:640px){ .row{ grid-template-columns:1fr } }
+
+    /* Toast — lakooniline kinnitus */
+    .toast{
+      position:fixed; bottom:18px; right:18px; background:#111; color:#fff;
+      padding:12px 14px; border-radius:12px; box-shadow:var(--shadow);
+      opacity:0; transform:translateY(10px); pointer-events:none; transition:all .28s ease; z-index:80;
+    }
+    .toast.show{ opacity:1; transform:translateY(0); pointer-events:auto }
+  </style>
+</head>
+<body>
+  <!-- ============================= PÄIS ============================= -->
+  <header aria-label="Põhinavigatsioon">
+    <div class="container nav">
+      <a class="brand" href="#algus">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M4 12a8 8 0 1 1 8 8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            <path d="M7 14l5-5 2 2" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span>Main Character OU</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#programm">Programm</a></li>
+          <li><a href="#info">Praktiline info</a></li>
+          <li><a href="#uudised">Uudised</a></li>
+          <li><a href="#pakkumised">Pakkumised</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+      <!-- Mini CTA, mis avab modaalvormi -->
+      <button class="btn-chip" id="openModalTop">Võtke ühendust</button>
+    </div>
+  </header>
+
+  <!-- ============================= HERO-LIUGUR ============================= -->
+  <section id="algus" class="hero" aria-label="Esiletõstetud lavastused">
+    <!-- Slaidid (taustpildid) -->
+    <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?q=80&w=1600&auto=format&fit=crop');"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=1600&auto=format&fit=crop');"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1501612780327-45045538702b?q=80&w=1600&auto=format&fit=crop');"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <!-- Sisu (pealkiri, periood, nupud) -->
+    <div class="hero-content">
+      <div class="hero-inner">
+        <span class="eyebrow">Teater • Tants • Muusika • Spordietendused</span>
+        <h1>“Piirideta lava” — artistid, kes sünteesivad liikumise, heli ja loo</h1>
+        <div class="meta">
+          <span class="tag">29 okt – 04 dets </span>
+          <span class="tag">Elva & Tallinn</span>
+          <span class="tag">Originaallavastus</span>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="#programm">Vaata programmi</a>
+          <a class="btn ghost" href="#info">Kuidas külastada</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paginatsioon (täpid) -->
+    <div class="bullets" aria-label="Slaidi navigeerimine">
+      <div class="bullet active" data-slide="0" aria-label="Slaid 1"></div>
+      <div class="bullet" data-slide="1" aria-label="Slaid 2"></div>
+      <div class="bullet" data-slide="2" aria-label="Slaid 3"></div>
+    </div>
+  </section>
+
+  <!-- ============================= PROGRAMM — HETKEL LAVAL / PEAGI ============================= -->
+  <section id="programm" class="stage">
+    <div class="container">
+      <div class="tabs" role="tablist" aria-label="Programmi filtrid">
+        <button class="tab active" role="tab" aria-selected="true" aria-controls="tab-now" id="tab-now-btn">Hetkel laval</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="tab-soon" id="tab-soon-btn">Peagi</button>
+      </div>
+
+      <!-- Hetkel laval -->
+      <div id="tab-now" role="tabpanel" aria-labelledby="tab-now-btn">
+        <div class="cards">
+          <article class="card">
+            <div class="card-media" style="background-image:url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop');"></div>
+            <div class="card-body">
+              <time class="caption">Täna – 21:00</time>
+              <h3>“Kauged kajad” — kaasaegne tantsufilm laval</h3>
+              <p class="caption">Lavastus, kus muusika sünnib laval ning ruum reageerib liikumisele. Sobib keelepiire ületavale publikule.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-media" style="background-image:url('https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=1200&auto=format&fit=crop');"></div>
+            <div class="card-body">
+              <time class="caption">Sel nädalal</time>
+              <h3>“Hingetõmme” — džässkoosseis kohtab akrobaatikat</h3>
+              <p class="caption">Improvisatsiooniline kontsert, mille energia on iga õhtu erinev. Koostöös noorte tsirkuseartistidega.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Peagi -->
+      <div id="tab-soon" class="section" style="padding:22px 0 0" role="tabpanel" aria-labelledby="tab-soon-btn" hidden>
+        <div class="cards">
+          <article class="card">
+            <div class="card-media" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop');"></div>
+            <div class="card-body">
+              <time class="caption">Järgmine kuu</time>
+              <h3>“Keelatud*” — muusikateater dokumentaalsest materjalist</h3>
+              <p class="caption">Lavastajaduo koondab pärislood, kohalikud koorid ja minimalistliku lavakeele.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-media" style="background-image:url('https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1200&auto=format&fit=crop');"></div>
+            <div class="card-body">
+              <time class="caption">Varsti</time>
+              <h3>“Rütm ja rada” — staadionietendus, kus heli loob liikumine</h3>
+              <p class="caption">Koostöö kohalike spordiklubidega; heli salvestub reaalajas radarianduritest.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= LAI STRIPE FOTO ============================= -->
+  <div class="stripe" aria-hidden="true">
+    <h2>Ühiselt laval, ühiselt saalis — iga õhtu on kordumatu</h2>
+  </div>
+
+  <!-- ============================= PRAKTILINE INFO ============================= -->
+  <section id="info" class="section">
+    <div class="container">
+      <h2>Kuidas külastada</h2>
+      <p class="caption" style="max-width:840px">
+        Saalide asukohad ja ligipääs: kasutame partnerpaiku nii Elvas kui ka Tallinnas. Uksed avame vähemalt pool tundi varem.
+        Istekohad on vabalt valitavad, erivajaduste korral aitavad saaliteenindajad. Pildistamine ja salvestamine on
+        kokkuleppel lavastajaga.
+      </p>
+      <div class="cards" style="margin-top:16px">
+        <article class="card">
+          <div class="card-body">
+            <h3>Kestus ja vaheajad</h3>
+            <p class="caption">Programmid kestavad enamasti 60–90 minutit. Kui on vaheaeg, on see märgitud programmilehel; kohapeal pakume vaikseid puhkealasid.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-body">
+            <h3>Pääsmete kättesaamine</h3>
+            <p class="caption">Kinnituskiri saabub e-postile. Sisenedes piisab nimest või QR-koodist. Kui kinkisid koha, märgi ostul kommentaarides saaja nimi.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= UUDISED (2025 kuupäevad) ============================= -->
+  <section id="uudised" class="news">
+    <div class="container">
+      <div class="news-head">
+        <h2>Teater üle piiride</h2>
+        <button class="more" id="openModalNews">Kõik uudised</button>
+      </div>
+
+      <div class="news-list">
+        <!-- Tekstikolumn (tabelilaadne) -->
+        <div>
+          <div class="news-item">
+            <span class="caption">À la Une</span>
+            <div>
+              <time datetime="2025-01-25">25 jaan 2025</time>
+              <a href="#">Loovisikud kohanevad — ja loovad uue rütmi</a>
+            </div>
+          </div>
+          <div class="news-item">
+            <span class="caption">À la Une</span>
+            <div>
+              <time datetime="2025-12-15">15 dets 2025</time>
+              <a href="#">Koostöö võrgustikuga: ühised lavad ja jagatud meeskonnad</a>
+            </div>
+          </div>
+          <div class="news-item">
+            <span class="caption">À la Une</span>
+            <div>
+              <time datetime="2025-10-18">18 okt 2025</time>
+              <a href="#">Tants, mis kõlab: kuidas andurid muutusid pillideks</a>
+            </div>
+          </div>
+          <div class="news-item">
+            <span class="caption">À la Une</span>
+            <div>
+              <time datetime="2025-09-06">06 sept 2025</time>
+              <a href="#">Noorte trupilugu: “Päike treppidel” võitis publiku</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pisipildid paremal (kooskõlas referentsiga) -->
+        <div class="news-media">
+          <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1000&auto=format&fit=crop" alt="Stseen laval — toolidega kompositsioon">
+          <img src="https://images.unsplash.com/photo-1489156531719-33d59da6c63c?q=80&w=1000&auto=format&fit=crop" alt="Stseen taeva taustal" style="margin-top:12px">
+          <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=1000&auto=format&fit=crop" alt="Kaadrikatkend mustvalgena" style="margin-top:12px">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= PAKKUMISED — tume plokk ============================= -->
+  <section id="pakkumised" class="offers">
+    <div class="container">
+      <span class="badge">Uus hooaeg</span>
+      <h2>Vaataja pakkumised</h2>
+      <p style="max-width:720px; color:#cdd3db">
+        Meie eesmärk on teha kohtumine kunstiga võimalikult lihtsaks.
+        Valisime kolm viisakat paketti partneritele, koolidele ja väikestele kogukondadele.
+        Kõik vormistub e-posti teel — hoiame korralduse selge ja inimliku.
+      </p>
+
+      <div class="offer-grid">
+        <article class="offer-card">
+          <h3>Klubiõhtu saaliga</h3>
+          <p>Vali kas tants või muusika — meie toome kunstnikud ja tehnika, sina hoolitsed publiku eest. Sobib kogukonnakeskustele ja festivalide eelõhtuteks.</p>
+          <a class="btn" style="background:#fff; color:#111; margin-top:10px" href="#kontakt">Küsi kuupäevi</a>
+        </article>
+
+        <article class="offer-card">
+          <h3>Töötoad noortele</h3>
+          <p>Liikumis- ja heliõpitoad koolidele. Osalejad loovad lühikese stseeni ning saavad kogemuse, kuidas idee muutub lavaks.</p>
+          <a class="btn" style="border:1px solid rgba(255,255,255,.35); color:#fff; margin-top:10px" href="#kontakt">Võta ühendust</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= KONTAKT + JALUS ============================= -->
+  <section id="kontakt" class="contact">
+    <div class="container">
+      <h2>Kontakt</h2>
+      <p class="caption" style="max-width:800px">
+        Kui tahad kutsuda meid esinema, korraldada koolituse või luua koostööprojekti, kirjuta meile.
+        Vastame selge sammukava ja esialgse ajajoonega. Me ei küsi liigseid andmeid — oluline on idee ja koht.
+      </p>
+
+      <div class="contact-grid" style="margin-top:14px">
+        <div class="info-card">
+          <h3>Aadress</h3>
+          <p>Soosaare tn 3, 61508 Elva, Estonia</p>
+          <p class="small">Ajakohase info saamiseks kirjuta meile e-postiga — vastame reeglina järgmisel tööpäeval.</p>
+        </div>
+        <div class="info-card">
+          <h3>E-post</h3>
+          <p><a href="mailto:meelis@maincharacterest.org">meelis@maincharacterest.org</a></p>
+          <p class="small">Lisa lühikirjeldus kavandatavast üritusest või trennist (koht, kuupäevaidee, tehniline eripära).</p>
+          <p><button class="btn-chip" id="openModalBottom">Ava kontaktivorm</button></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer aria-label="Jalus">
+    <div class="container">
+      <div class="footer-row">
+        <p><strong>Main Character OU</strong> — agentuur kunstnikele, sportlastele ja meelelahutajatele. Elva, Eesti.</p>
+        <p>
+          <a href="#programm">Programm</a> •
+          <a href="#info">Külastusinfo</a> •
+          <a href="#uudised">Uudised</a> •
+          <a href="#pakkumised">Pakkumised</a>
+        </p>
+      </div>
+      <div class="footer-row">
+        <p class="small">© 2025 Main Character OU. Kõik õigused kaitstud.</p>
+        
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================= MODAALVORM + TOAST ============================= -->
+  <div class="modal" id="contactModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h4 id="modalTitle">Võtke ühendust</h4>
+        <button class="close" id="closeModal" aria-label="Sulge vorm">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="contactForm">
+          <div class="row">
+            <div>
+              <label for="name">Nimi</label>
+              <input id="name" name="name" type="text" placeholder="Ees- ja perekonnanimi" required>
+            </div>
+            <div>
+              <label for="email">E-post</label>
+              <input id="email" name="email" type="email" placeholder="nimi@organisatsioon.ee" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="org">Organisatsioon</label>
+              <input id="org" name="org" type="text" placeholder="Ettevõtte või projekti nimi">
+            </div>
+            <div>
+              <label for="topic">Teema</label>
+              <select id="topic" name="topic">
+                <option value="esindus">Artisti/Sporditähe esindus</option>
+                <option value="programm">Turnee / programm / üritus</option>
+                <option value="partnerlus">Partnerlus ja kommunikatsioon</option>
+                <option value="muu">Muu (täpsusta allpool)</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="message">Lühikirjeldus</label>
+            <textarea id="message" name="message" rows="6" placeholder="Koht, ajavahemik, idee, tehniline eripära…" required></textarea>
+          </div>
+
+          <label class="small" for="consent" style="display:block">
+            <input id="consent" type="checkbox" required>
+            Nõustun, et esitatud andmeid kasutatakse üksnes ühenduse võtmiseks ja esialgse vaate saatmiseks.
+          </label>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn primary" type="submit">Saada päring</button>
+            <button class="btn ghost" type="button" id="closeBottom">Loobu</button>
+          </div>
+
+          <p class="small" style="margin-top:8px">
+            Abifraasid: “Kutsun trupi residendiks”, “Vajan esinemist festivalil”, “Koolidele töötuba koos artistidega”.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true">Aitäh! Teie sõnum on teele pandud.</div>
+
+  <!-- ============================= Skriptid ============================= -->
+  <script>
+    // --- Liugur: automaatne vahetus + täppide klikk ---
+    (function(){
+      const slides = Array.from(document.querySelectorAll('.hero .slide'));
+      const bullets = Array.from(document.querySelectorAll('.bullet'));
+      let idx = 0;
+      let timer = null;
+
+      function show(i){
+        slides.forEach((s, n) => s.classList.toggle('active', n === i));
+        bullets.forEach((b, n) => b.classList.toggle('active', n === i));
+        idx = i;
+      }
+      function next(){ show((idx + 1) % slides.length); }
+      function start(){ timer = setInterval(next, 5000); }
+      function stop(){ if(timer){ clearInterval(timer); timer=null; } }
+
+      bullets.forEach(b => {
+        b.addEventListener('click', () => { stop(); show(parseInt(b.dataset.slide, 10)); start(); });
+      });
+
+      start();
+    })();
+
+    // --- Tabide vahetus (Hetkel laval / Peagi) ---
+    (function(){
+      const btnNow = document.getElementById('tab-now-btn');
+      const btnSoon = document.getElementById('tab-soon-btn');
+      const panelNow = document.getElementById('tab-now');
+      const panelSoon = document.getElementById('tab-soon');
+
+      btnNow.addEventListener('click', () => {
+        btnNow.classList.add('active'); btnNow.setAttribute('aria-selected','true');
+        btnSoon.classList.remove('active'); btnSoon.setAttribute('aria-selected','false');
+        panelNow.hidden = false; panelSoon.hidden = true;
+      });
+
+      btnSoon.addEventListener('click', () => {
+        btnSoon.classList.add('active'); btnSoon.setAttribute('aria-selected','true');
+        btnNow.classList.remove('active'); btnNow.setAttribute('aria-selected','false');
+        panelSoon.hidden = false; panelNow.hidden = true;
+      });
+    })();
+
+    // --- Modaalne kontaktivorm + toast ---
+    (function(){
+      const modal = document.getElementById('contactModal');
+      const openTop = document.getElementById('openModalTop');
+      const openBottom = document.getElementById('openModalBottom');
+      const openNews = document.getElementById('openModalNews'); // “Kõik uudised” nupu taaskasutus CTA-na
+      const closeBtn = document.getElementById('closeModal');
+      const closeBottom = document.getElementById('closeBottom');
+      const toast = document.getElementById('toast');
+      const form = document.getElementById('contactForm');
+
+      function open(){
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden','false');
+        setTimeout(()=>{ const f=document.getElementById('name'); if(f) f.focus(); }, 60);
+      }
+      function close(){
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden','true');
+      }
+      function showToast(msg){
+        toast.textContent = msg || 'Aitäh! Teie sõnum on teele pandud.';
+        toast.classList.add('show');
+        setTimeout(()=>toast.classList.remove('show'), 3000);
+      }
+
+      [openTop, openBottom, openNews].forEach(btn => btn && btn.addEventListener('click', open));
+      if(closeBtn) closeBtn.addEventListener('click', close);
+      if(closeBottom) closeBottom.addEventListener('click', close);
+      modal.addEventListener('click', e => { if(e.target === modal) close(); });
+      document.addEventListener('keydown', e => { if(e.key === 'Escape' && modal.classList.contains('show')) close(); });
+
+      form.addEventListener('submit', function(ev){
+        ev.preventDefault();
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const message = form.message.value.trim();
+        const consent = document.getElementById('consent').checked;
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+        if(!name){ showToast('Palun lisage nimi.'); return; }
+        if(!emailOk){ showToast('Palun kontrollige e-posti aadressi.'); return; }
+        if(!message){ showToast('Palun kirjeldage lühidalt ideed.'); return; }
+        if(!consent){ showToast('Palun kinnitage nõusolek.'); return; }
+
+        form.reset();
+        close();
+        showToast('Aitäh! Võtame teiega peagi ühendust e-posti teel.');
+      });
+    })();
+  </script>
+</body>
+</html>
